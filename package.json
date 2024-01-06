@@ -1,0 +1,49 @@
+{
+  "name": "portofolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint --ext .js,.astro src",
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte,astro}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,md,js,ts,jsx,tsx,html,astro,svelte}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.3.4",
+    "@astrojs/svelte": "^5.0.3",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.1.1",
+    "svelte": "^4.2.8",
+    "svelte-motion": "^0.12.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-astro": "^0.31.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "typescript": "^5.3.3"
+  }
+}

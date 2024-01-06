@@ -1,0 +1,4 @@
+{
+  "cSpell.words": ["astro", "astrojs", "tailwindcss", "tsconfigs"],
+  "css.lint.unknownAtRules": "ignore"
+}

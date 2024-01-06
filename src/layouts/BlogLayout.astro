@@ -1,0 +1,18 @@
+---
+import Nav from '../components/Nav.svelte'
+const { frontmatter } = Astro.props
+---
+
+<html>
+  <Nav client:idle />
+
+  <div class="max-w-screen-lg mx-auto p-5 md:px-0">
+    <!-- ... -->
+    <h1>{frontmatter.title}</h1>
+    <h2>Post author: {frontmatter.author}</h2>
+    <p>{frontmatter.description}</p>
+    <slot />
+    <!-- Markdown content is injected here -->
+    <!-- ... -->
+  </div>
+</html>

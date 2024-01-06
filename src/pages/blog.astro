@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+interface PostImage {
+  url: string
+  alt: string
+}
+
+interface Post {
+  title: string
+  description: string
+  path: string
+  image: PostImage
+}
+
+const blobs = await Astro.glob('./posts/*.md')
+const posts: Post[] = blobs.map((blob) => {
+  return {
+    title: blob.frontmatter?.title,
+    description: blob.frontmatter?.description,
+    pubDate: blob.frontmatter?.pubDate,
+    image: blob.frontmatter?.image,
+    path: blob.url ?? '',
+  }
+})
+---
+
+<Layout title="Blog">
+  <div class="text-center py-6">
+    <h1 class="text-3xl font-bold mb-3">Latest Blog</h1>
+    <p>Read these post for more insight!</p>
+  </div>
+
+  <div class="py-6 flex">
+    {
+      posts.map((post) => (
+        <a href={post?.path}>
+          <div class="rounded-lg overflow-hidden border-2">
+            <img src={post?.image?.url} alt={post?.image?.url} />
+            <div class="p-4">
+              <h2>{post.title}</h2>
+              <p class="mt-1">{post.description}</p>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</Layout>
