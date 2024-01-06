@@ -1,4 +1,7 @@
 {
-  "cSpell.words": ["astro", "astrojs", "tailwindcss", "tsconfigs"],
-  "css.lint.unknownAtRules": "ignore"
+  "cSpell.words": ["astro", "astrojs", "tailwindcss", "tsconfigs", "withastro"],
+  "css.lint.unknownAtRules": "ignore",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-action.json": "file:///home/yozy/MEGA/workdir/learn/portofolio/.github/workflows/deploy.yaml"
+  }
 }
