@@ -10,6 +10,7 @@
     "Subagia",
     "tailwindcss",
     "tsconfigs",
+    "webp",
     "withastro"
   ],
   "css.lint.unknownAtRules": "ignore",
