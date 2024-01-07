@@ -4,10 +4,16 @@
   interface Route {
     name: string
     path: string
+    target?: string
   }
 
   const routes: Route[] = [
     { name: 'About', path: '/' },
+    {
+      name: 'Github',
+      path: 'https://github.com/labasubagia',
+      target: '_blank',
+    },
     { name: 'Blog', path: '/blog' },
   ]
 
@@ -75,8 +81,8 @@
 
       <div class="hidden md:flex">
         {#each routes as route}
-          <a href={route.path}>
-            <div class="text-center p-4 hover:bg-gray-200">
+          <a href={route.path} target={route?.target ?? null}>
+            <div class="menu-item">
               {route.name}
             </div>
           </a>
@@ -98,8 +104,8 @@
           >
             <div class="w-full">
               {#each routes as route}
-                <a href={route.path}>
-                  <div class="text-center p-4 hover:bg-gray-200">
+                <a href={route.path} target={route?.target ?? null}>
+                  <div class="menu-item">
                     {route.name}
                   </div>
                 </a>
@@ -111,3 +117,12 @@
     </div>
   </div>
 </nav>
+
+<style>
+  .menu-item {
+    @apply text-center p-4;
+  }
+  .menu-item:hover {
+    @apply bg-gray-200;
+  }
+</style>

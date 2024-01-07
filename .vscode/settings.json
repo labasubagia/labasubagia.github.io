@@ -1,5 +1,17 @@
 {
-  "cSpell.words": ["astro", "astrojs", "tailwindcss", "tsconfigs", "withastro"],
+  "cSpell.words": [
+    "astro",
+    "astrojs",
+    "Laba",
+    "linecap",
+    "linejoin",
+    "lucide",
+    "SIRCLO",
+    "Subagia",
+    "tailwindcss",
+    "tsconfigs",
+    "withastro"
+  ],
   "css.lint.unknownAtRules": "ignore",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -10,5 +22,6 @@
   "[css]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.enableFiletypes": ["astro"]
 }
