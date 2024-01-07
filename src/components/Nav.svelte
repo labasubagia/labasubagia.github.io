@@ -120,7 +120,7 @@
 
 <style>
   .menu-item {
-    @apply text-center p-4;
+    @apply text-center p-4 rounded-lg;
   }
   .menu-item:hover {
     @apply bg-gray-200;

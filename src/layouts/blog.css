@@ -7,6 +7,14 @@
   @apply font-bold pt-6 pb-3;
 }
 
+.blog-content p {
+  @apply text-xl py-2;
+}
+
+.blog-content blockquote {
+  @apply p-4 border-l-8 border-l-gray-300 bg-gray-200 rounded-lg my-4;
+}
+
 .blog-content h1 {
   @apply text-3xl;
 }
@@ -16,9 +24,13 @@
 }
 
 .blog-content .astro-code {
-  @apply p-2 my-2 shadow-md rounded-md;
+  @apply p-4 my-4 shadow-md rounded-md;
 }
 
 .blog-content img {
   @apply my-6 mx-auto rounded-md overflow-hidden;
+}
+
+.blog-content a {
+  @apply font-bold underline;
 }
