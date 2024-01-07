@@ -1,7 +1,14 @@
 {
   "cSpell.words": ["astro", "astrojs", "tailwindcss", "tsconfigs", "withastro"],
   "css.lint.unknownAtRules": "ignore",
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-action.json": "file:///home/yozy/MEGA/workdir/learn/portofolio/.github/workflows/deploy.yaml"
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "eslint.validate": ["javascript"],
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

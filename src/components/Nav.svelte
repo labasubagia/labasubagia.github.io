@@ -19,7 +19,7 @@
 
 <nav class="px-3 py-6 border-b-2">
   <div class="max-w-screen-lg mx-auto flex justify-between items-center">
-    <div class="flex items-center justify-between">
+    <a href="/" class="flex items-center justify-between">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -35,8 +35,8 @@
           d="m10 10-2 2 2 2"
         /><path d="m14 14 2-2-2-2" /></svg
       >
-      <div class="text-xl font-bold">Name</div>
-    </div>
+      <div class="text-xl font-bold">Laba Subagia</div>
+    </a>
 
     <div>
       <button

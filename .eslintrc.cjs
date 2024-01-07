@@ -4,8 +4,8 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'standard-with-typescript', 
-    'plugin:astro/recommended', 
+    'standard-with-typescript',
+    'plugin:astro/recommended',
     'plugin:svelte/recommended',
     'prettier',
   ],
@@ -25,8 +25,8 @@ module.exports = {
       parserOptions: {
         parser: '@typescript-eslint/parser',
         project: './tsconfig.json',
-        extraFileExtensions: ['.svelte']
-      }
+        extraFileExtensions: ['.svelte'],
+      },
     },
     {
       env: {

@@ -11,15 +11,13 @@ interface Post {
   description: string
   path: string
   image: PostImage
+  pubDate: string
 }
 
-const blobs = await Astro.glob('./posts/*.md')
+const blobs = await Astro.glob<Post>('./posts/*.md')
 const posts: Post[] = blobs.map((blob) => {
   return {
-    title: blob.frontmatter?.title,
-    description: blob.frontmatter?.description,
-    pubDate: blob.frontmatter?.pubDate,
-    image: blob.frontmatter?.image,
+    ...blob.frontmatter,
     path: blob.url ?? '',
   }
 })

@@ -1,0 +1,24 @@
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  @apply font-bold pt-6 pb-3;
+}
+
+.blog-content h1 {
+  @apply text-3xl;
+}
+
+.blog-content h2 {
+  @apply text-2xl;
+}
+
+.blog-content .astro-code {
+  @apply p-2 my-2 shadow-md rounded-md;
+}
+
+.blog-content img {
+  @apply my-6 mx-auto rounded-md overflow-hidden;
+}
