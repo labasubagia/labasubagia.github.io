@@ -1,6 +1,7 @@
 ---
 import PostList from '@/components/PostList.astro'
 import Layout from '@/layouts/Layout.astro'
+import type { Work } from '@/types/about'
 import type { Post } from '@/types/blog'
 
 const techStacks = [
@@ -8,22 +9,6 @@ const techStacks = [
   ['go', 'nodejs', 'js', 'ts', 'py'],
   ['docker', 'kubernetes', 'terraform'],
 ]
-
-interface Position {
-  title: string
-  description?: string
-  fromDate: string
-  untilDate: string
-  todo: string[]
-}
-
-interface Work {
-  logo: string
-  url: string
-  name: string
-  description: string
-  positions: Position[]
-}
 
 const works: Work[] = [
   {
@@ -238,7 +223,7 @@ const posts: Post[] = blobs.map((blob) => {
                     {work.name}
                   </p>
                 </a>
-                {(work.positions.length > 0) && (
+                {work.positions.length > 0 && (
                   <p class="text-gray-600 text-sm">
                     {work.positions[work.positions.length - 1].fromDate} -{' '}
                     {work.positions[0].untilDate}
