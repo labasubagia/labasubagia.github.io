@@ -1,18 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro'
-
-interface PostImage {
-  url: string
-  alt: string
-}
-
-interface Post {
-  title: string
-  description: string
-  path: string
-  image: PostImage
-  pubDate: string
-}
+import PostList from '@/components/PostList.astro'
+import Layout from '@/layouts/Layout.astro'
+import type { Post } from '@/types/blog'
 
 const blobs = await Astro.glob<Post>('./posts/*.md')
 const posts: Post[] = blobs.map((blob) => {
@@ -29,21 +18,7 @@ const posts: Post[] = blobs.map((blob) => {
     <h1 class="text-3xl font-bold mb-3">Latest Blog</h1>
     <p class="text-xl">Read these post for more insight!</p>
   </div>
-
-  <div class="py-6 mb-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-    {
-      posts.map((post) => (
-        <a href={post?.path}>
-          <div class="rounded-lg overflow-hidden border-2 text-center">
-            <img src={post?.image?.url} alt={post?.image?.url} />
-            <div class="p-4">
-              <h2 class="text-lg font-bold text-ellipsis">{post.title}</h2>
-              <p class="mt-2 text-gray-600 text-sm">{post.pubDate}</p>
-              <p class="mt-2 text-ellipsis">{post.description}</p>
-            </div>
-          </div>
-        </a>
-      ))
-    }
+  <div class="py-6 px-3">
+    <PostList {posts} />
   </div>
 </Layout>

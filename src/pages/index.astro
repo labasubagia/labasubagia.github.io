@@ -1,5 +1,124 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import PostList from '@/components/PostList.astro'
+import Layout from '@/layouts/Layout.astro'
+import type { Post } from '@/types/blog'
+
+const techStacks = [
+  ['html', 'css', 'tailwind'],
+  ['go', 'nodejs', 'js', 'ts', 'py'],
+  ['docker', 'kubernetes', 'terraform'],
+]
+
+interface Position {
+  title: string
+  description?: string
+  fromDate: string
+  untilDate: string
+  todo: string[]
+}
+
+interface Work {
+  logo: string
+  url: string
+  name: string
+  description: string
+  positions: Position[]
+}
+
+const works: Work[] = [
+  {
+    logo: 'https://cdn-images-1.medium.com/max/1200/1*LtO0T530VG9irRJ0Cusm4Q.png',
+    url: 'https://www.sirclo.com/',
+    name: 'SIRCLO',
+    description:
+      'SIRCLO Commerce is a channel management solution for businesses across various industries that seek to enter the online distribution path.',
+    positions: [
+      {
+        fromDate: 'Aug 2022',
+        untilDate: 'Present',
+        title: 'Software Engineer',
+        description:
+          'Work closely to develop, maintenance, and improve performance of microservices application',
+        todo: [
+          'Spearheading the design, development, and optimization of microservices architecture to ensure scalability, flexibility, and high performance.',
+          'Driving initiatives to optimize resource utilization, reduce latency, and enhance overall system responsiveness.',
+          'Actively participating in troubleshooting and incident response activities to maintain system reliability and availability. We called it SWAT',
+        ],
+      },
+    ],
+  },
+  {
+    logo: 'https://storage.googleapis.com/kampusmerdeka_kemdikbud_go_id/mitra/mitra_e7e4d54b-6688-45e9-96a6-1a2e04be63a0.png',
+    name: 'Bangkit led by Google, Tokopedia, Gojek & Traveloka',
+    description:
+      'Bangkit is a unique career readiness program led by Google and delivered with support from industry experts from our industry partners like Gojek, GoTo  and Google. The program is designed to provide the participants with first-hand exposure to real-world practitioners and prepare them with relevant skills for a successful career in leading tech companies.',
+    url: 'https://www.linkedin.com/company/bangkit-academy/about/',
+    positions: [
+      {
+        title: 'Machine Learning Engineer (Capstone Project)',
+        fromDate: 'Jul 2022',
+        untilDate: 'May 2022',
+        description: 'Capstone Project is the final project of Bangkit Academy',
+        todo: [
+          'Planning application workflow',
+          'Build Machine Learning model using Tensorflow and Keras',
+          'Build deployment with FastAPI',
+          'The project can be seen here <a class="underline text-blue-900" target="_blank" href="https://github.com/Maskology">here</a>',
+        ],
+      },
+      {
+        title: 'Machine Learning Participant',
+        fromDate: 'Feb 2022',
+        untilDate: 'Apr 2022',
+        todo: [
+          'Learn about Python.',
+          'Learn IT Automation with Python.',
+          'Learn the math behind machine learning.',
+          'Using Tensorflow to Build Deep Learning Model.',
+        ],
+      },
+    ],
+  },
+  {
+    logo: 'https://btw-cdn.com/assets/btw-edutech/logo/meta-logo-2.png',
+    url: 'https://www.btwedutech.com/',
+    name: 'BTW EduTech',
+    description:
+      'BTW EduTech is an E-Learning platform for student who want have higher chance nation test to enter Civil Service Collage or Public University in Indonesia',
+    positions: [
+      {
+        title: 'Backend Developer',
+        fromDate: 'Feb 2021',
+        untilDate: 'Feb 2022',
+        todo: [
+          'Build Scalable Microservices using Laravel Lumen, Express.js, and Go.',
+          'Implement Event-Driven Communication using RabbitMQ.',
+          'Management data using MongoDB and MYSQL.',
+          'Research about design patterns in microservices such as API Gateway, API Composition, CQRS',
+        ],
+      },
+      {
+        title: 'Frontend Developer',
+        fromDate: 'Dec 2020',
+        untilDate: 'Feb 2021',
+        todo: [
+          'Maintain current frontend websites with HTML, CSS, and Javascript.',
+          'Refactor current frontend stylesheets using TailwindCSS.',
+          'Build frontend websites using React.js and Typescript.',
+        ],
+      },
+    ],
+  },
+]
+
+const blobs = (await Astro.glob<Post>('./posts/*.md')).slice(0, 3)
+const posts: Post[] = blobs.map((blob) => {
+  return {
+    ...blob.frontmatter,
+    pubDate: blob.frontmatter.pubDate.split('T')?.[0] ?? '',
+    path: blob.url ?? '',
+  }
+})
 ---
 
 <Layout title="About">
@@ -19,7 +138,7 @@ import Layout from '../layouts/Layout.astro'
       </p>
 
       <!-- socials -->
-      <div class="py-6 flex gap-6">
+      <div class="py-6 flex gap-6 justify-center md:justify-start">
         <!-- github -->
         <a href="https://github.com/labasubagia" target="_blank">
           <svg
@@ -84,6 +203,94 @@ import Layout from '../layouts/Layout.astro'
       src="/img/profile.webp"
       alt="profile"
     />
+  </div>
+
+  <!-- tech stacks -->
+  <div class="px-3 pb-8 flex flex-col">
+    <p class="text-center md:text-left text-2xl">TECH STACK</p>
+    <div class="mt-4 flex flex-col gap-y-3 md:gap-y-1 md:flex-row gap-x-8">
+      {
+        techStacks.map((stacks) => {
+          const url = `https://skillicons.dev/icons?i=${stacks.join(',')}`
+          return (
+            <div class="flex justify-center md:justify-start">
+              <img class="hover:top-3 h-12" src={url} alt="tech stack" />
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+
+  <!-- experiences -->
+  <div class="px-3 py-6">
+    <h1 class="text-3xl">Experiences</h1>
+    <div class="mt-6">
+      {
+        works.map((work) => {
+          return (
+            // place
+            <div class="flex gap-x-6 p-6 border-2 mb-6 rounded-lg">
+              <img class="w-24 h-24" src={work.logo} alt={work.name} />
+              <div class="grow">
+                <a href={work.url} target="_blank">
+                  <p class="text-xl hover:text-gray-700 font-bold leading-9">
+                    {work.name}
+                  </p>
+                </a>
+                {(work.positions.length > 0) && (
+                  <p class="text-gray-600 text-sm">
+                    {work.positions[work.positions.length - 1].fromDate} -{' '}
+                    {work.positions[0].untilDate}
+                  </p>
+                )}
+                {work.description != null && (
+                  <p class="text-gray-700 mt-2">{work.description}</p>
+                )}
+
+                <div class="mt-4">
+                  {work.positions.map((position) => (
+                    // position
+                    <div class="mb-4">
+                      <p class="text-lg underline">{position.title}</p>
+                      <p class="text-gray-600 text-sm mt-1">
+                        {position.fromDate} - {position.untilDate}
+                      </p>
+                      <div class="text-gray-700 mt-2">
+                        {position.description != null && (
+                          <p>{position.description}</p>
+                        )}
+                        <div>
+                          {position.todo.map((task) => (
+                            <p class="flex items-start">
+                              <span class="text-2xl leading-6">•&nbsp;</span>{' '}
+                              <span set:html={task} />
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+
+  <!-- projects -->
+  <!-- <div class="px-3 py-6">
+    <h1 class="text-3xl text-center md:text-left">Recent Projects</h1>
+  </div> -->
+
+  <!-- blogs -->
+  <div class="px-3 py-6">
+    <h1 class="text-3xl text-center md:text-left">Recent Posts</h1>
+    <div class="py-4">
+      <PostList posts={posts} />
+    </div>
   </div>
 </Layout>
 

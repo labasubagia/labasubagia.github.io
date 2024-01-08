@@ -1,0 +1,25 @@
+---
+import type { Post } from '@/types/blog'
+interface Props {
+  posts: Post[]
+}
+
+const { posts } = Astro.props
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+  {
+    posts.map((post) => (
+      <a href={post?.path}>
+        <div class="rounded-lg overflow-hidden border-2 text-center">
+          <img src={post?.image?.url} alt={post?.image?.url} />
+          <div class="p-4">
+            <h2 class="text-lg font-bold text-ellipsis">{post.title}</h2>
+            <p class="mt-2 text-gray-600 text-sm">{post.pubDate}</p>
+            <p class="mt-2 text-ellipsis">{post.description}</p>
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>
