@@ -11,6 +11,8 @@ tags: ['development', 'nix', 'ansible', 'docker']
 
 This is my journey of finding the ultimate development environment for my personal needs.
 
+## The Criteria
+
 I have several criteria for the ultimate development environment that I dream of. These are they.
 
 1. Easy to set up or at least follow a certain rule to do it.
