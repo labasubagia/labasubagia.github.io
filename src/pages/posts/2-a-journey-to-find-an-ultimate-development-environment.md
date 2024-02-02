@@ -211,7 +211,7 @@ Let's compare this approach to the criteria above.
 
 ## The Nix Package
 
-Nix is a package manager that makes reproducible, declarative, and reliable systems. ~ nixos.org
+> Nix is a package manager that makes reproducible, declarative, and reliable systems. ~ nixos.org
 
 Nix / Nixpkgs is really good at building reproducible development environments that can be easily duplicated in other machines. Nix takes a functional programming approach where the same input should produce the same output. Nix also works well in other Linux distributions (outside NixOS) and can exist alongside default system package managers like apt and yum.
 
