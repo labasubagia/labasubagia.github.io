@@ -6,6 +6,10 @@
 .blog-content h6 {
   @apply font-bold pt-6 pb-3;
 }
+.blog-content ol {
+  list-style-type: decimal;
+  @apply ml-5;
+}
 
 .blog-content p {
   @apply text-xl py-2;

@@ -5,8 +5,8 @@ pubDate: 2024-02-02
 description: 'Personal journey in development workflow'
 image:
   url: 'https://cdn-images-1.medium.com/max/800/0*vV086gNLrcakrI8E'
-  alt: 'utility'
-tags: ['go', 'utility']
+  alt: 'development'
+tags: ['development', 'nix', 'ansible', 'docker']
 ---
 
 This is my journey of finding the ultimate development environment for my personal needs.
