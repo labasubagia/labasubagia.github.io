@@ -252,6 +252,8 @@ An example of this is using docker-compose to spin up PostgreSQL, Grafana, Admin
 
 I've used this approach for quite a while. The advantage of using this approach it can save resource usage when you need to work with multiple projects simultaneously. This is an example of how I structure the folder.
 
+![folder](https://res.cloudinary.com/practicaldev/image/fetch/s--AHNdBZMZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://cdn-images-1.medium.com/max/224/1%2A5XQFkP8Pnq-911QDnH85nw.png)
+
 The same docker dependency is used by several projects at the same timeUsing one shared package in one docker-compose file that can be used on several projects (e.g. bind all ports to hosts). The drawback of this approach is you'll not be able to push the compose file to version control along with the project or you'll need to copy it to every project (unless you use mono repo).
 
 One example of my repo that uses this approach is [here](https://github.com/labasubagia/realworld-backend?tab=readme-ov-file#development-mode). In this case, Include the docker-compose in the project repo.
@@ -259,6 +261,8 @@ One example of my repo that uses this approach is [here](https://github.com/laba
 ### Full Usage
 
 The full usage of the container means that you'll do the development **inside** the container. All the tools for development need to be installed inside the container. One of the technologies that leverage this approach is [Devcontainers](https://containers.dev/).
+
+![Dev](https://res.cloudinary.com/practicaldev/image/fetch/s--MBSfOPjr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://cdn-images-1.medium.com/max/1000/0%2AlyIZoq7BGDt4HK3p.png)
 
 Develop inside a containerThe advantage of this approach is not require any configuration related to the application (except Text Editor and Containerization Tool) in the OS. Several text editors such as [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) or [JetBrains](https://www.jetbrains.com/help/idea/connect-to-devcontainer.html) already support doing development inside a container seamlessly.
 
