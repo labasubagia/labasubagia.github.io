@@ -22,7 +22,7 @@ I have several criteria for the ultimate development environment that I dream of
 1. Minimal Resource usage.
 1. Text Editor / IDE Compatability for local development.
 
-> DESCLAIMER: This is only tested in Linux because I used Linux for development. The arguments also can be very subjective.
+> **DISCLAIMER**: This is only tested in Linux because I used Linux for development. The arguments also can be very subjective.
 
 OK, let's get started.
 
