@@ -30,7 +30,7 @@ OK, let's get started.
 
 A traditional way to create a development environment is to install and configure each tool one by one.
 
-An example of this is XAMPP, LAMPP, or installing PHP, MySQL, and other dependency separately. Things that I really hate about this method is has a high human error possibility.
+An example of this is [XAMPP](https://www.apachefriends.org/), LAMPP, or installing PHP, MySQL, and other dependency separately. Things that I really hate about this method is has a high human error possibility.
 
 In this way, your company usually will have a document or checklist that instructs step by step how to set up your local development environment and even how to set up each deployment to make sure not a single step is overlooked.
 
@@ -64,11 +64,11 @@ Let's compare this approach to the criteria above.
 
 ## The Version Manager Approach
 
-The purpose of a version manager is to help you navigate or install any tools for development easily. Version Manager can be one tool for each dependency (e.g. NVM, g) or One tool for all dependencies (e.g. asdf, mise).
+The purpose of a version manager is to help you navigate or install any tools for development easily. Version Manager can be one tool for each dependency (e.g. [NVM](https://github.com/nvm-sh/nvm), [g](https://github.com/stefanmaric/g)) or One tool for all dependencies (e.g. [asdf](https://asdf-vm.com/), [mise](https://mise.jdx.dev/)).
 
 This is maybe the way that I use the longest time among the others, it is pretty easy to set up especially when you are using a popular OS (e.g. Ubuntu). These tools might be helpful but it's not perfect. There are some corner cases I've experienced e.g. sometimes you'll need to install several dependencies manually (e.g. install PHP), or you'll need to build from scratch when you use a more niche OS (e.g. NixOS).
 
-Almost all of these tools require setup manually for each tool. Last time I checked, only Mise provided a declarative way to configure a development environment.
+Almost all of these tools require setup manually for each tool. Last time I checked, only Mise provided a [declarative way](https://mise.jdx.dev/configuration.html) to configure a development environment.
 
 ```toml
 [env]
@@ -121,7 +121,7 @@ Let's compare this approach to the criteria above.
 
 > Configuration management is a process for maintaining computer systems, servers, applications, network devices, and other IT components in a desired state. It's a way to help ensure that a system performs as expected, even after many changes are made over time. ~RedHat
 
-In this article's context, it is simply a tool that provides a declarative way to automate your machine/OS to configure the development machine as you want (install package, modify the configuration, etc). Examples of these tools are Ansible, Puppet, etc.
+In this article's context, it is simply a tool that provides a declarative way to automate your machine/OS to configure the development machine as you want (install package, modify the configuration, etc). Examples of these tools are [Ansible](https://www.ansible.com/), [Puppet](https://www.puppet.com/), etc.
 
 In My case, I use Ansible. Most of the time the config is easy especially when all you need is only install the package from the OS repository. But things can be a little bit challenging when you need to install from scratch or need additional configuration.
 This is an example of a simple install OS package
@@ -208,7 +208,7 @@ This is an example of a more challenging config
 
 As you can see when installing docker, you'll need more research about Ansible when doing more complicated tasks e.g. adding a repository, reading OS codename, etc.
 
-I've even tried to automate an OS with Ansible. You can see it here.
+I've even tried to automate an OS with Ansible. You can see it [here](https://github.com/labasubagia/devenv-ansible).
 
 Let's compare this approach to the criteria above.
 
@@ -231,7 +231,7 @@ But so far, the best way to use Nix is by using NixOS itself, because you have a
 
 Things that I don't really like about Nix is you'll need to learn their scripting language to configure your system. The learning curve is quite steep. Even though the number of packages is large, not all packages are always up to date, and being able to use the latest version requires a slightly challenging approach (e.g. override, unstable package, or directly contribute to Nixpkgs itself).
 
-I also have a configuration in Nix, you can check it here.
+I also have a configuration in Nix, you can check it [here](https://github.com/labasubagia/dotfiles).
 
 Let's compare this approach to the criteria above.
 
@@ -250,7 +250,7 @@ Let's compare this approach to the criteria above.
 
 Containerization is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. Containerization is similiar to a virtual machine except a virtual machine requires an operating system within than bundle.
 
-By using containerization, the application will always have the same configuration that is used in the development environment and production environment. There is no more "It works on my machine". Some examples of containerization technologies are Docker and Podman.
+By using containerization, the application will always have the same configuration that is used in the development environment and production environment. There is no more "It works on my machine". Some examples of containerization technologies are [Docker](https://www.docker.com/) and [Podman](https://podman.io/).
 
 ![Meme](https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png&name=small)
 
@@ -258,7 +258,7 @@ There are several ways I use containerization/containers in the development envi
 
 ### Partial Usage
 
-The first way to use it is to use containerization on several dependencies e.g. database, log, etc. You'll do the development process outside the containers but use the dependency needed from it.
+The first way to use it is to use containerization on several dependencies e.g. database, log, etc. You'll do the development process **outside** the containers but use the dependency needed from it.
 
 An example of this is using docker-compose to spin up PostgreSQL, Grafana, Adminer, and Jaeger. But Golang is still installed on the OS. The reason for this is to enable full support of any tools that are required by text editor / IDE. Some IDEs might not be able to fully support all the language features when all the dependencies are inside the container.
 
@@ -266,21 +266,21 @@ I've used this approach for quite a while. The advantage of using this approach 
 
 The same docker dependency is used by several projects at the same timeUsing one shared package in one docker-compose file that can be used on several projects (e.g. bind all ports to hosts). The drawback of this approach is you'll not be able to push the compose file to version control along with the project or you'll need to copy it to every project (unless you use mono repo).
 
-One example of my repo that uses this approach is this. In this case, Include the docker-compose in the project repo.
+One example of my repo that uses this approach is [here](https://github.com/labasubagia/realworld-backend?tab=readme-ov-file#development-mode). In this case, Include the docker-compose in the project repo.
 
 ### Full Usage
 
-The full usage of the container means that you'll do the development inside the container. All the tools for development need to be installed inside the container. One of the technologies that leverage this approach is Devcontainers.
+The full usage of the container means that you'll do the development **inside** the container. All the tools for development need to be installed inside the container. One of the technologies that leverage this approach is [Devcontainers](https://containers.dev/).
 
-Develop inside a containerThe advantage of this approach is not require any configuration related to the application (except Text Editor and Containerization Tool) in the OS. Several text editors such as VSCode or JetBrains already support doing development inside a container seamlessly.
+Develop inside a containerThe advantage of this approach is not require any configuration related to the application (except Text Editor and Containerization Tool) in the OS. Several text editors such as [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) or [JetBrains](https://www.jetbrains.com/help/idea/connect-to-devcontainer.html) already support doing development inside a container seamlessly.
 
-When you push your code to Github, you can develop the app using codespace and it will automatically set up an online development environment for you. Other tools will make your life easier when developing using a dev container e.g. DevPod.
+When you push your code to Github, you can develop the app using codespace and it will automatically set up an online development environment for you. Other tools will make your life easier when developing using a dev container e.g. [DevPod](https://devpod.sh/).
 
 One disadvantage that I've experienced is when I need to go back and forth between several projects at the same time. Using this approach requires more computer resources to run all dependencies. An example of this is when ProjectA and ProjectB use PostgreSQL, by using this there will be two PostgreSQL instances running.
 
 There is a workaround for cases like this by running PostgreSQL (or any dependencies) using separate docker-compose outside those two projects. However, if you have a high-end PC or are comfortable with that, it's fine.
 
-There is an example of my project that uses Devcontainers here
+There is an example of my project that uses Devcontainers [here](https://github.com/labasubagia/realworld-backend)
 
 Based on partial usage and full usage, my assessment regarding the use of containers as a development environment is as follows.
 
@@ -298,14 +298,14 @@ Based on partial usage and full usage, my assessment regarding the use of contai
 All the approaches above are not exclusive to each other. In my Software Engineering Career, I've combined several approaches above to get the best out of it. Some examples are:
 
 1. Use NixOS with declarative configuration along with docker in almost all of my projects. The Nixpkgs are used to configure the OS as a whole and Install the programming language. Partial Usage of docker for dependencies like Database, Log, and Monitoring dashboard.
-1. Using Version Manager along with Configuration Management when I use LinuxMint. You can check it here.
+1. Using Version Manager along with Configuration Management when I use LinuxMint. You can check it [here](https://github.com/labasubagia/devenv-ansible/blob/3f0ba3024305771c336f9e6d1b53e917b7a5b3ec/roles/devenv/tasks/softwares/asdf.yml).
 1. Partial Usage of Containerization itself is also an example combination of a traditional way to install programming language and its tool in the OS using the default package manager for better text editor support and run dependencies like Database using Docker.
 
 You can utilize all the approaches above to satisfy your needs.
 
 ## Honorable Mention: Google Colab
 
-If you ask me: "Is there any tool or development environment that satisfies all your criteria or at least almost all of it?". My answer will be Google Colab.
+If you ask me: "Is there any tool or development environment that satisfies all your criteria or at least almost all of it?". My answer will be [Google Colab](https://colab.google/).
 
 I encountered this when I was learning about Machine Learning and all related to that stuff. One tool that is always recommended everywhere is Google Colab. It's a free development environment that you can access anywhere. This tool also can be used to develop real projects. Even when I don't have GPU on my machine, Google Collab already provides it.
 
