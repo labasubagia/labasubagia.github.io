@@ -79,7 +79,6 @@ NODE_ENV = 'production'
 # specify single or multiple versions
 terraform = '1.0.0'
 erlang = ['23.3', '24.0']
-
 # supports everything you can do with .tool-versions currently
 node = ['16', 'prefix:20', 'ref:master', 'path:~/.nodes/14']
 # send arbitrary options to the plugin, passed as:
