@@ -3,7 +3,6 @@ import PostList from '@/components/PostList.astro'
 import Layout from '@/layouts/Layout.astro'
 import type { Work } from '@/types/about'
 import type { Post } from '@/types/blog'
-import dayjs from 'dayjs'
 
 const techStacks = [
   ['html', 'css', 'tailwind'],
@@ -106,7 +105,7 @@ let posts: Post[] = blobs.map((blob) => {
   }
 })
 posts = posts
-  .sort((a, b) => (dayjs(a.pubDate).isBefore(b.pubDate) ? 1 : -1))
+  .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())
   .slice(0, 3)
 ---
 
