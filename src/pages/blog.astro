@@ -2,15 +2,18 @@
 import PostList from '@/components/PostList.astro'
 import Layout from '@/layouts/Layout.astro'
 import type { Post } from '@/types/blog'
+import dayjs from 'dayjs'
 
 const blobs = await Astro.glob<Post>('./posts/*.md')
-const posts: Post[] = blobs.map((blob) => {
+let posts: Post[] = blobs.map((blob) => {
   return {
     ...blob.frontmatter,
     pubDate: blob.frontmatter.pubDate.split('T')?.[0] ?? '',
     path: blob.url ?? '',
   }
 })
+
+posts = posts.sort((a, b) => (dayjs(a.pubDate).isBefore(b.pubDate) ? 1 : -1))
 ---
 
 <Layout title="Blog">

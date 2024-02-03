@@ -121,7 +121,9 @@ This is an example of a simple install OS package
 - name: setup apt apps
   become: true
   apt:
-  name: - htop - tmux
+  name:
+    - htop
+    - tmux
   state: latest
 ```
 
@@ -133,67 +135,71 @@ This is an example of a more challenging config
   become: true
   vars:
   apt_key_path: /etc/apt/keyrings/docker.asc
-  block: - name: docker install prerequisite
-  apt:
-  name: - ca-certificates - curl - gnupg
-  state: latest
+  block:
+  - name: docker install prerequisite
+    apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+    state: latest
 
-      - name: docker get upstream distribution codename (ubuntu codename)
-        when: is_mint
-        shell: . /etc/upstream-release/lsb-release && echo "$DISTRIB_CODENAME"
-        register: codename_mint
+  - name: docker get upstream distribution codename (ubuntu codename)
+    when: is_mint
+    shell: . /etc/upstream-release/lsb-release && echo "$DISTRIB_CODENAME"
+    register: codename_mint
 
-      - name: docker get distribution codename
-        when: is_ubuntu
-        shell: . /etc/os-release && echo "$VERSION_CODENAME"
-        register: codename_ubuntu
+  - name: docker get distribution codename
+    when: is_ubuntu
+    shell: . /etc/os-release && echo "$VERSION_CODENAME"
+    register: codename_ubuntu
 
-      - name: docker get dpkg architecture
-        shell: dpkg --print-architecture
-        register: dpkg_arch
+  - name: docker get dpkg architecture
+    shell: dpkg --print-architecture
+    register: dpkg_arch
 
-      - name: docker set facts
-        set_fact:
-          distribution_codename: "{{ codename_mint.stdout if is_mint else codename_ubuntu.stdout }}"
-          dpkg_arch: "{{ dpkg_arch.stdout }}"
+  - name: docker set facts
+    set_fact:
+      distribution_codename: "{{ codename_mint.stdout if is_mint else codename_ubuntu.stdout }}"
+      dpkg_arch: "{{ dpkg_arch.stdout }}"
 
-      - name: docker get apt-key
-        get_url:
-          url: https://download.docker.com/linux/ubuntu/gpg
-          dest: "{{ apt_key_path }}"
+  - name: docker get apt-key
+    get_url:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      dest: "{{ apt_key_path }}"
 
-      - name: docker add repository
-        apt_repository:
-          repo: deb [arch={{ dpkg_arch }} signed-by={{ apt_key_path }}] https://download.docker.com/linux/ubuntu {{ distribution_codename }} stable
-          filename: docker
-          state: present
+  - name: docker add repository
+    apt_repository:
+      repo: deb [arch={{ dpkg_arch }} signed-by={{ apt_key_path }}] https://download.docker.com/linux/ubuntu {{ distribution_codename }} stable
+      filename: docker
+      state: present
 
-      - name: docker install apps
-        apt:
-          name:
-            - docker-ce
-            - docker-ce-cli
-            - containerd.io
-            - docker-buildx-plugin
-            - docker-compose-plugin
-          state: latest
+  - name: docker install apps
+    apt:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
+      state: latest
 
-      - name: docker enable service
-        service:
-          name: docker
-          state: started
-          enabled: true
+  - name: docker enable service
+    service:
+      name: docker
+      state: started
+      enabled: true
 
-      - name: docker add group
-        group:
-          name: docker
-          state: present
+  - name: docker add group
+    group:
+      name: docker
+      state: present
 
-      - name: docker add user "{{ user }}" into docker group
-        user:
-          name: "{{ user }}"
-          groups: docker
-          append: true
+  - name: docker add user "{{ user }}" into docker group
+    user:
+      name: "{{ user }}"
+      groups: docker
+      append: true
 ```
 
 As you can see when installing docker, you'll need more research about Ansible when doing more complicated tasks e.g. adding a repository, reading OS codename, etc.

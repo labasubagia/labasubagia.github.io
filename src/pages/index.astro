@@ -3,6 +3,7 @@ import PostList from '@/components/PostList.astro'
 import Layout from '@/layouts/Layout.astro'
 import type { Work } from '@/types/about'
 import type { Post } from '@/types/blog'
+import dayjs from 'dayjs'
 
 const techStacks = [
   ['html', 'css', 'tailwind'],
@@ -96,14 +97,17 @@ const works: Work[] = [
   },
 ]
 
-const blobs = (await Astro.glob<Post>('./posts/*.md')).slice(0, 3)
-const posts: Post[] = blobs.map((blob) => {
+const blobs = await Astro.glob<Post>('./posts/*.md')
+let posts: Post[] = blobs.map((blob) => {
   return {
     ...blob.frontmatter,
     pubDate: blob.frontmatter.pubDate.split('T')?.[0] ?? '',
     path: blob.url ?? '',
   }
 })
+posts = posts
+  .sort((a, b) => (dayjs(a.pubDate).isBefore(b.pubDate) ? 1 : -1))
+  .slice(0, 3)
 ---
 
 <Layout title="About">

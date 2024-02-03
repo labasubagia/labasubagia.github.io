@@ -26,6 +26,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/ts-plugin": "^1.3.1",
     "astro": "^4.1.1",
+    "dayjs": "^1.11.10",
     "svelte": "^4.2.8",
     "svelte-motion": "^0.12.0",
     "tailwindcss": "^3.4.1"
