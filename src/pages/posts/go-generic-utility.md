@@ -130,4 +130,4 @@ The code with generic and without generic at first is similar, and you don't hav
 
 Generic is suitable for making a utility function with more than one input type. But don't overuse it.
 
-Ok, that's all. You can also play with the code [here](https://go.dev/play/p/31wYm0zvhoF). Thank you.
+Ok, that's all. You can also play with the code [here](https://go.dev/play/p/5tqEBlo_mmk). Thank you.
