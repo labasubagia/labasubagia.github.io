@@ -42,13 +42,7 @@
         d="m10 10-2 2 2 2"
       /><path d="m14 14 2-2-2-2" /></svg
     >
-    <div class="font-bold flex items-center gap-2">
-      <p class="text-2xl">Laba Subagia</p>
-
-      <a href="/rss.xml">
-        <img src="/icon/rss.svg" class="w-6 h-6" alt="rss" />
-      </a>
-    </div>
+    <div class="text-2xl font-bold">Laba Subagia</div>
   </a>
 
   <div>
