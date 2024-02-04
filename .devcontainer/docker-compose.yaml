@@ -1,0 +1,12 @@
+version: '3'
+services:
+  dev:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 4321:4321
+    volumes:
+      - ..:/workspace:cached
+      - ~/.ssh:/home/node/.ssh:ro
+      - ~/.local/share/pnpm/store:/home/node/.pnpm-store
