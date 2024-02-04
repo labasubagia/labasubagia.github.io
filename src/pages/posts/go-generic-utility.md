@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: 'Generic in Golang: Write utility functions more easier'
+title: 'Generic in Golang: Write utility functions easier'
 pubDate: 2023-01-22
 description: 'The way to take advantage of generic'
 image:
