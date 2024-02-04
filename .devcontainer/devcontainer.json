@@ -6,7 +6,7 @@
   "shutdownAction": "stopCompose",
   "forwardPorts": [4321],
   "overrideCommand": true,
-  "postCreateCommand": "pnpm install",
+  "postCreateCommand": "./.devcontainer/postCreatedCommand.sh",
   "customizations": {
     "vscode": {
       "extensions": [
