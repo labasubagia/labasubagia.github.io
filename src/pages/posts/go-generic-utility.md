@@ -11,7 +11,7 @@ tags: ['go', 'utility']
 
 In this article, I will demonstrate why it is easier to write utility functions/methods using Generic in Golang. The utility function itself is a function that performs common behavior and can be reused in several places.
 
-> **Generic programming** is a style of computer programming in which algorithms are written in terms of types to-be-specified-later that are then ? instantiated when needed for specific types provided as parameters.
+> **Generic programming** is a style of computer programming in which algorithms are written in terms of types to-be-specified-later that are then instantiated when needed for specific types provided as parameters.
 
 By using generic in Go, we can have a codebase with less duplication because my codebase had several duplications before I used Generic. Especially the codebase that uses Go version 1.17 and below.
 
