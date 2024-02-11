@@ -7,12 +7,21 @@
   @apply font-bold pt-6 pb-3;
 }
 
-.blog-content ol {
-  list-style-type: decimal;
+.blog-content ol,
+.blog-content ul {
   @apply ml-5 text-xl;
 }
 
-.blog-content ol li {
+.blog-content ol {
+  list-style-type: decimal;
+}
+
+.blog-content ul {
+  list-style-type: disc;
+}
+
+.blog-content ol li,
+.blog-content ul li {
   @apply mb-3;
 }
 
@@ -22,6 +31,15 @@
 
 .blog-content blockquote {
   @apply p-4 border-l-8 border-l-gray-300 bg-gray-200 rounded-lg my-4;
+}
+
+.blog-content code {
+  @apply bg-gray-300 rounded-sm;
+}
+
+.blog-content pre code {
+  @apply bg-none p-0 rounded-none;
+  background-color: unset;
 }
 
 .blog-content h1 {
