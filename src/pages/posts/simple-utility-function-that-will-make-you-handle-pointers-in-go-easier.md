@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogLayout.astro
 title: 'Simple utility function that will make you handle pointers in Go easier'
-pubDate: 2024-02-12
+pubDate: 2024-02-13
 description: 'Handle pointer safer and easier'
 image:
   url: 'https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fw4ci9m6zzr2fb0gc0h56.jpg'
