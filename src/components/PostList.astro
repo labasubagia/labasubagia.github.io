@@ -11,11 +11,11 @@ const { posts } = Astro.props
   {
     posts.map((post) => (
       <a href={post?.path}>
-        <div class="rounded-lg overflow-hidden border-2 text-center">
+        <div class="rounded-lg overflow-hidden border-2 text-center h-full">
           <img
             src={post?.image?.url}
             alt={post?.image?.url}
-            class="h-56 bg-cover w-full"
+            class="min-h-56 bg-no-repeat bg-center object-scale-down"
           />
           <div class="p-4">
             <h2 class="text-lg font-bold text-ellipsis">{post.title}</h2>
