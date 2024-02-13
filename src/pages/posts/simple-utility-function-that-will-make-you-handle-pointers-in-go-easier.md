@@ -376,7 +376,6 @@ func SetPtr[T any](ptr **T, newPtr *T) {
 // Output:
 // {"ID":1,"Name":"Eric","Phone":"+62 881 112 312 xxx","Address":"Indonesia","IsBanned":true,"IsActive":null}
 // is user active? false
-// set pointer value safely
 
 ```
 
