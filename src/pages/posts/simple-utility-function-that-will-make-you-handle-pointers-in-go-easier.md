@@ -271,7 +271,6 @@ We need a way to resolve this issue.
 ## Using a simple utility function to make it safer and easier
 
 ```go
-
 // get the memory address of a value
 func Ptr[T any](value T) *T {
 	return &value
@@ -286,11 +285,14 @@ func ValOrElse[T any](ptr *T, defaultVal T) T {
 }
 
 // set pointer value safely
-func SetPtr[T any](ptr *T, newPtr *T) {
-	if newPtr == nil {
+func SetPtr[T any](ptr **T, newPtr *T) {
+	if ptr == nil || newPtr == nil {
 		return
 	}
-	*ptr = *newPtr
+	if *ptr == nil {
+		*ptr = new(T)
+	}
+	**ptr = *newPtr
 }
 ```
 
@@ -319,10 +321,10 @@ func (u User) String() string {
 }
 
 func (u *User) Update(input User) {
-	SetPtr(u.Name, input.Name)
-	SetPtr(u.Phone, input.Phone)
-	SetPtr(u.Address, input.Address)
-	SetPtr(u.IsBanned, input.IsBanned)
+	SetPtr(&u.Name, input.Name)
+	SetPtr(&u.Phone, input.Phone)
+	SetPtr(&u.Address, input.Address)
+	SetPtr(&u.IsBanned, input.IsBanned)
 }
 
 func main() {
@@ -361,16 +363,20 @@ func ValOrElse[T any](ptr *T, defaultVal T) T {
 }
 
 // set pointer value safely
-func SetPtr[T any](ptr *T, newPtr *T) {
-	if newPtr == nil {
+func SetPtr[T any](ptr **T, newPtr *T) {
+	if ptr == nil || newPtr == nil {
 		return
 	}
-	*ptr = *newPtr
+	if *ptr == nil {
+		*ptr = new(T)
+	}
+	**ptr = *newPtr
 }
 
 // Output:
 // {"ID":1,"Name":"Eric","Phone":"+62 881 112 312 xxx","Address":"Indonesia","IsBanned":true,"IsActive":null}
 // is user active? false
+// set pointer value safely
 
 ```
 
